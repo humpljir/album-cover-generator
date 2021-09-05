@@ -36,10 +36,20 @@ document.getElementById('album').addEventListener('keyup', function () {
 function pageInit() {
   document.getElementById("input-form").addEventListener("keyup", function () {
     ctx.save();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height); // Create gradient
+
+    var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
+    grd.addColorStop(0, "#151719");
+    grd.addColorStop(1, "#45235b"); // Fill with gradient
+
+    ctx.fillStyle = grd;
+    ctx.fillRect(0, 0, 1080, 1440);
     drawTemplate();
     drawText();
     document.getElementById("canvas-to-img").src = can.toDataURL("image/jpg");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawTemplate();
+    drawText();
   });
   can = document.getElementById("canvas");
   ctx = can.getContext("2d");
