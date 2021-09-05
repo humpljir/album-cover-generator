@@ -23,6 +23,16 @@ html, body {
         font-size: 22px;
     }
 
+    .img-placeholder {
+        width: 1080px;
+        height: 1440px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+    }
+
     .canvas-wrapper {
         margin: 40px;
     }

@@ -22,6 +22,15 @@ html, body {
 .main-wrapper .header {
   font-size: 22px;
 }
+.main-wrapper .img-placeholder {
+  width: 1080px;
+  height: 1440px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+}
 .main-wrapper .canvas-wrapper {
   margin: 40px;
 }
