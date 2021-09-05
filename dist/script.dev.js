@@ -39,6 +39,7 @@ function pageInit() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     drawTemplate();
     drawText();
+    document.getElementById("canvas-to-img").src = can.toDataURL("image/jpg");
   });
   can = document.getElementById("canvas");
   ctx = can.getContext("2d");
