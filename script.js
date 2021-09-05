@@ -32,19 +32,13 @@ document.getElementById('album').addEventListener('keyup', function () {
     ctx.restore();
 });
 
-function pageInit() {
-    document.getElementById("input-form").addEventListener("keyup", () => {
-        ctx.save();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+function generateImg() {
+        var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
+        grd.addColorStop(0, "#151719");
+        grd.addColorStop(1, "#45235b");
 
-            // Create gradient
-            var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
-            grd.addColorStop(0, "#151719");
-            grd.addColorStop(1, "#45235b");
-
-            // Fill with gradient
-            ctx.fillStyle = grd;
-            ctx.fillRect(0, 0, 1080, 1440);
+        ctx.fillStyle = grd;
+        ctx.fillRect(0, 0, 1080, 1440);
 
         drawTemplate();
         drawText();
@@ -53,22 +47,27 @@ function pageInit() {
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         drawTemplate();
         drawText();
+}
+
+function pageInit() {
+    document.getElementById("input-form").addEventListener("keyup", () => {
+        ctx.save();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        generateImg();
     });
 
     can = document.getElementById("canvas");
     ctx = can.getContext("2d");
 
-    drawTemplate();
-    drawText();
+    generateImg();
 }
 
 function generateFile(e) {
-    // Create gradient
     var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
     grd.addColorStop(0, "#151719");
     grd.addColorStop(1, "#45235b");
 
-    // Fill with gradient
     ctx.fillStyle = grd;
     ctx.fillRect(0, 0, 1080, 1440);
 

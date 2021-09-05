@@ -80,3 +80,9 @@ html, body {
 .main-wrapper .footer a {
   color: #6081ff;
 }
+
+@media screen and (max-width: 480px) {
+  .canvas-wrapper {
+    margin: 40px 0;
+  }
+}
