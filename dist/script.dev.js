@@ -2,6 +2,36 @@
 
 var can;
 var ctx;
+var coversList = [{
+  "filename": "01.jpg",
+  "font": "30px 'Architects Daughter'",
+  "text-line": "600",
+  "text-color": "#000",
+  "text-length": "64",
+  "color": "#45235b"
+}, {
+  "filename": "01.jpg",
+  "font": "30px 'Architects Daughter'",
+  "text-line": "600",
+  "text-color": "#000",
+  "text-length": "64",
+  "color": "#45235b"
+}, {
+  "filename": "01.jpg",
+  "font": "30px 'Architects Daughter'",
+  "text-line": "600",
+  "text-color": "#000",
+  "text-length": "64",
+  "color": "#45235b"
+}];
+var nr = 0;
+
+function drawTemplate() {
+  var img = document.getElementById("template-img");
+  ctx.drawImage(img, 0, 0);
+  img = document.getElementById("img-01");
+  ctx.drawImage(img, 240, 200);
+}
 
 function drawText() {
   var stringTitle = document.getElementById('song').value;
@@ -15,11 +45,20 @@ function drawText() {
   ctx.restore();
 }
 
-function drawTemplate() {
-  var img = document.getElementById("template-img");
-  ctx.drawImage(img, 0, 0);
-  img = document.getElementById("img-01");
-  ctx.drawImage(img, 240, 200);
+function nextImage() {
+  if (nr < coversList.length - 1) {
+    nr++;
+  } else {
+    nr = 0;
+  }
+}
+
+function drawAlbumLabel() {
+  var stringTitle = document.getElementById('album').value;
+  ctx.fillStyle = coversList[nr]["text-color"];
+  ctx.font = coversList[nr]["font"];
+  ctx.fillText(stringTitle, 150, coversList[nr]["text-line"]);
+  ctx.restore();
 }
 
 document.getElementById('album').addEventListener('keyup', function () {
@@ -44,6 +83,7 @@ function generateImg() {
   document.getElementById("canvas-to-img").src = can.toDataURL("image/jpg");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawTemplate();
+  drawAlbumLabel();
   drawText();
 }
 
@@ -65,6 +105,7 @@ function generateFile(e) {
   ctx.fillStyle = grd;
   ctx.fillRect(0, 0, 1080, 1440);
   drawTemplate();
+  drawAlbumLabel();
   drawText();
   var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
   var element = document.createElement('a');
@@ -74,6 +115,7 @@ function generateFile(e) {
   element.click();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawTemplate();
+  drawAlbumLabel();
   drawText();
 }
 
