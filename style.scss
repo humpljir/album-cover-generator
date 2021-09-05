@@ -1,3 +1,78 @@
 body {
     margin: 0;
+    scroll-behavior: smooth;
+    background-color: #000;
+    color: #fff;
+    font-family: 'Nunito', sans-serif;
+    font-weight: 400;
+}
+
+.main-wrapper {
+    width: 100%;
+    max-width: 70vh;
+    background-color: #ffffff4a;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 22px;
+    overflow-x: hidden;
+
+    .header {
+        font-size: 22px;
+    }
+
+    .canvas-wrapper {
+        margin: 40px;
+    }
+
+    canvas {
+        width: 100%;
+    }
+
+    input {
+        width: 100%;
+        box-sizing: border-box;
+        padding: 12px;
+        margin: 12px 0;
+        display: block;
+        background-color: #696969;
+        border: 2px solid #696969;
+        border-radius: 0;
+        color: #fff;
+        font-family: 'Nunito',
+            sans-serif;
+        font-weight: 400;
+    }
+
+    input:focus {
+        border-bottom: 2px solid #fff;
+        outline: none;
+    }
+
+    .button-box {
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+    }
+
+    .bottom-button {
+        padding: 18px;
+        margin: 36px 0;
+        cursor: pointer;
+        background-color: #fff;
+        color: #000;
+        font-weight: 700;
+        width: calc(50% - 42px);
+        text-align: center;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 36px 0;
+
+        a {
+            color: #6081ff;
+        }
+    }
 }
