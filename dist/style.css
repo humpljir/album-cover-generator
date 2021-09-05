@@ -1,7 +1,6 @@
-body {
+html, body {
   margin: 0;
   scroll-behavior: smooth;
-  background-color: #000;
   color: #fff;
   font-family: "Nunito", sans-serif;
   font-weight: 400;
@@ -12,7 +11,8 @@ body {
 
 .main-wrapper {
   width: 100%;
-  max-width: 70vh;
+  max-width: 80vh;
+  box-sizing: border-box;
   position: relative;
   left: 50%;
   transform: translateX(-50%);
@@ -58,7 +58,8 @@ body {
   background-color: #fff;
   color: #000;
   font-weight: 700;
-  width: calc(50% - 42px);
+  /*width: calc(50% - 42px);*/
+  width: 100%;
   text-align: center;
 }
 .main-wrapper .footer {
