@@ -52,13 +52,16 @@ drawText();
 
 function generateFile(e) {
       // Create gradient
-      var grd = ctx.createLinearGradient(0, 0, 500, 140);
+      var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
       grd.addColorStop(0, "#151719");
       grd.addColorStop(1, "#45235b");
 
       // Fill with gradient
       ctx.fillStyle = grd;
       ctx.fillRect(0, 0, 1080, 1440);
+
+      drawTemplate();
+      drawText();
 
       var image = can.toDataURL("image/png").replace("image/png", "image/octet-stream");
 
@@ -68,6 +71,10 @@ function generateFile(e) {
       element.setAttribute('download', filename);
 
       element.click();
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      drawTemplate();
+      drawText();
 }
 
 window.onload = function () {
