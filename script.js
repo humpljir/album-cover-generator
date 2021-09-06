@@ -3,13 +3,13 @@ var ctx;
 
 const coversList = [{
     "filename": "01.jpg",
-    "font": "500 30px 'Caveat'",
-    "text-x": "280",
-    "text-y": "750",
+    "font": "17px 'Press Start 2P'",
+    "text-x": "260",
+    "text-y": "250",
     "text-color": "#000",
     "text-length": "64",
     "text-align": "left",
-    "bg-color": "#45235b"
+    "bg-color": "#4d8786"
 }, {
     "filename": "02.jpg",
     "font": "66.6px 'UnifrakturCook'",
@@ -73,6 +73,33 @@ const coversList = [{
     "text-length": "64",
     "text-align": "left",
     "bg-color": "#50415a"
+}, {
+    "filename": "09.jpg",
+    "font": "40px 'Atomic Age'",
+    "text-x": "540",
+    "text-y": "280",
+    "text-color": "#68ff33",
+    "text-length": "64",
+    "text-align": "center",
+    "bg-color": "#42543b"
+}, {
+    "filename": "10.jpg",
+    "font": "23px 'Anton'",
+    "text-x": "818",
+    "text-y": "250",
+    "text-color": "#000",
+    "text-length": "64",
+    "text-align": "right",
+    "bg-color": "#7a312a"
+}, {
+    "filename": "11.jpg",
+    "font": "500 30px 'Caveat'",
+    "text-x": "280",
+    "text-y": "750",
+    "text-color": "#000",
+    "text-length": "64",
+    "text-align": "left",
+    "bg-color": "#22386a"
 }];
 
 var nr = 0;
@@ -175,6 +202,7 @@ function pageInit() {
         generateImg();
     });
 
+    document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
     can = document.getElementById("canvas");
     ctx = can.getContext("2d");
 
