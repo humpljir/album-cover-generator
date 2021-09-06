@@ -50,8 +50,10 @@ body {
         width: 100%;
     }
 
-    label {
-        font-size: 14px;
+    form {
+        p {
+            font-size: 14px;
+        }
     }
 
     input {
@@ -112,9 +114,10 @@ body {
     .main-wrapper .button-box {
         flex-wrap: wrap;
     }
-   .main-wrapper .bottom-button {
-       margin: 0;
-       margin-top: 22px;
-       width: 100%;
-   }
+
+    .main-wrapper .bottom-button {
+        margin: 0;
+        margin-top: 22px;
+        width: 100%;
+    }
 }

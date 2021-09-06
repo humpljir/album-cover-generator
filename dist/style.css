@@ -45,7 +45,7 @@ body {
 .main-wrapper canvas {
   width: 100%;
 }
-.main-wrapper label {
+.main-wrapper form p {
   font-size: 14px;
 }
 .main-wrapper input {
