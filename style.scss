@@ -1,4 +1,5 @@
-html, body {
+html,
+body {
     margin: 0;
     scroll-behavior: smooth;
     color: #fff;
@@ -16,8 +17,11 @@ html, body {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    padding: 22px;
     overflow-x: hidden;
+
+    .padding-box {
+        padding: 22px;
+    }
 
     .header {
         font-size: 22px;
@@ -92,8 +96,8 @@ html, body {
     }
 }
 
-@media screen and (max-width: 480px) {
-    .canvas-wrapper {
-        margin: 40px 0;
+@media screen and (max-width: 600px) {
+    .main-wrapper .canvas-wrapper {
+        margin: 10px 0;
     }
 }

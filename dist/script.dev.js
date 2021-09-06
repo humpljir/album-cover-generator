@@ -5,7 +5,7 @@ var ctx;
 var coversList = [{
   "filename": "01.jpg",
   "font": "30px 'Architects Daughter'",
-  "text-line": "600",
+  "text-line": "750",
   "text-color": "#000",
   "text-length": "64",
   "color": "#45235b"
@@ -57,7 +57,7 @@ function drawAlbumLabel() {
   var stringTitle = document.getElementById('album').value;
   ctx.fillStyle = coversList[nr]["text-color"];
   ctx.font = coversList[nr]["font"];
-  ctx.fillText(stringTitle, 150, coversList[nr]["text-line"]);
+  ctx.fillText(stringTitle, 280, coversList[nr]["text-line"]);
   ctx.restore();
 }
 
@@ -73,6 +73,8 @@ document.getElementById('album').addEventListener('keyup', function () {
 });
 
 function generateImg() {
+  ctx.save();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
   var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
   grd.addColorStop(0, "#151719");
   grd.addColorStop(1, "#45235b");
@@ -96,6 +98,15 @@ function pageInit() {
   can = document.getElementById("canvas");
   ctx = can.getContext("2d");
   generateImg();
+  setTimeout(function () {
+    generateImg();
+  }, 100);
+  setTimeout(function () {
+    generateImg();
+  }, 400);
+  setTimeout(function () {
+    generateImg();
+  }, 2000);
 }
 
 function generateFile(e) {

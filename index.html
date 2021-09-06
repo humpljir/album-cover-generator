@@ -15,25 +15,27 @@
 
 <body>
     <div class="main-wrapper">
-        <div class="header">ČSSD album generator</div>
+        <!--<div class="header">ČSSD album generator</div>-->
         <div class="canvas-wrapper">
             <canvas id="canvas" width="1080" height="1440">Fck. This doesn't work.</canvas>
             <img class="img-placeholder" id="canvas-to-img" src="">
         </div>
-        <form id="input-form">
-            <input type="text" id="album" value="Praha v plamenech">
-            <input type="text" id="song" value="Se srdcem na levém místě">
-            <input type="text" id="artist" value="Hustá dvojka">
-        </form>
-        <div class="button-box">
-            <!--<a class="bottom-button" onclick=nextImage(this)>NEXT IMAGE</a>-->
-            <a class="bottom-button" download="Screenshot.jpg" onclick=generateFile(this)>DOWNLOAD</a>
+        <div class="padding-box">
+            <form id="input-form">
+                <input type="text" id="album" value="Praha v plamenech">
+                <input type="text" id="song" value="Se srdcem na levém místě">
+                <input type="text" id="artist" value="Hustá dvojka">
+            </form>
+            <div class="button-box">
+                <!--<a class="bottom-button" onclick=nextImage(this)>NEXT IMAGE</a>-->
+                <a class="bottom-button" download="Screenshot.jpg" onclick=generateFile(this)>DOWNLOAD</a>
+            </div>
+            <div class="footer"><a href="https://github.com/humpljir/album-cover-generator">github</a> ✨ <a
+                    href="">donate</a>
+            </div>
+            <div class="unvisible" style="display: none;"><img src="img/template.png" id="template-img"><img
+                    src="img/covers/01.jpg" id="img-01"></div>
         </div>
-        <div class="footer"><a href="https://github.com/humpljir/album-cover-generator">github</a> ✨ <a
-                href="">donate</a>
-        </div>
-        <div class="unvisible" style="display: none;"><img src="img/template.png" id="template-img"><img
-                src="img/covers/01.jpg" id="img-01"></div>
     </div>
     <script src="script.js"></script>
 </body>
