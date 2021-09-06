@@ -4,32 +4,32 @@ var can;
 var ctx;
 var coversList = [{
   "filename": "01.jpg",
-  "font": "30px 'Architects Daughter'",
+  "font": "500 30px 'Caveat'",
   "text-line": "750",
   "text-color": "#000",
   "text-length": "64",
-  "color": "#45235b"
+  "bg-color": "#45235b"
+}, {
+  "filename": "02.jpg",
+  "font": "70px 'UnifrakturCook'",
+  "text-line": "720",
+  "text-color": "#fffb49",
+  "text-length": "64",
+  "bg-color": "#374b63"
 }, {
   "filename": "01.jpg",
   "font": "30px 'Architects Daughter'",
   "text-line": "600",
   "text-color": "#000",
   "text-length": "64",
-  "color": "#45235b"
-}, {
-  "filename": "01.jpg",
-  "font": "30px 'Architects Daughter'",
-  "text-line": "600",
-  "text-color": "#000",
-  "text-length": "64",
-  "color": "#45235b"
+  "bg-color": "#45235b"
 }];
 var nr = 0;
 
 function drawTemplate() {
   var img = document.getElementById("template-img");
   ctx.drawImage(img, 0, 0);
-  img = document.getElementById("img-01");
+  img = document.getElementById("album-img");
   ctx.drawImage(img, 240, 200);
 }
 
@@ -51,6 +51,13 @@ function nextImage() {
   } else {
     nr = 0;
   }
+
+  document.getElementById("album-img").src = "img/covers/" + coversList[nr]["filename"];
+  document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  drawTemplate();
+  drawAlbumLabel();
+  drawText();
 }
 
 function drawAlbumLabel() {
@@ -59,6 +66,14 @@ function drawAlbumLabel() {
   ctx.font = coversList[nr]["font"];
   ctx.fillText(stringTitle, 280, coversList[nr]["text-line"]);
   ctx.restore();
+}
+
+function drawBackground() {
+  var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
+  grd.addColorStop(0, "#151719");
+  grd.addColorStop(1, coversList[nr]["bg-color"]);
+  ctx.fillStyle = grd;
+  ctx.fillRect(0, 0, 1080, 1440);
 }
 
 document.getElementById('album').addEventListener('keyup', function () {
@@ -75,12 +90,9 @@ document.getElementById('album').addEventListener('keyup', function () {
 function generateImg() {
   ctx.save();
   ctx.clearRect(0, 0, canvas.width, canvas.height);
-  var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
-  grd.addColorStop(0, "#151719");
-  grd.addColorStop(1, "#45235b");
-  ctx.fillStyle = grd;
-  ctx.fillRect(0, 0, 1080, 1440);
+  drawBackground();
   drawTemplate();
+  drawAlbumLabel();
   drawText();
   document.getElementById("canvas-to-img").src = can.toDataURL("image/jpg");
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -110,17 +122,13 @@ function pageInit() {
 }
 
 function generateFile(e) {
-  var grd = ctx.createLinearGradient(20, 0, 1060, 1440);
-  grd.addColorStop(0, "#151719");
-  grd.addColorStop(1, "#45235b");
-  ctx.fillStyle = grd;
-  ctx.fillRect(0, 0, 1080, 1440);
+  drawBackground();
   drawTemplate();
   drawAlbumLabel();
   drawText();
   var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
   var element = document.createElement('a');
-  var filename = 'test.jpg';
+  var filename = document.getElementById('album').value + '_by_' + document.getElementById('artist').value + '_album_generator.jpg';
   element.setAttribute('href', image);
   element.setAttribute('download', filename);
   element.click();
