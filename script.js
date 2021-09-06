@@ -4,25 +4,76 @@ var ctx;
 const coversList = [{
     "filename": "01.jpg",
     "font": "500 30px 'Caveat'",
-    "text-line": "750",
+    "text-x": "280",
+    "text-y": "750",
     "text-color": "#000",
     "text-length": "64",
+    "text-align": "left",
     "bg-color": "#45235b"
 }, {
     "filename": "02.jpg",
-    "font": "70px 'UnifrakturCook'",
-    "text-line": "720",
+    "font": "66.6px 'UnifrakturCook'",
+    "text-x": "540",
+    "text-y": "720",
     "text-color": "#fffb49",
     "text-length": "64",
+    "text-align": "center",
     "bg-color": "#374b63"
 }, {
-    "filename": "01.jpg",
-    "font": "30px 'Architects Daughter'",
-    "text-line": "600",
-    "text-color": "#000",
+    "filename": "03.jpg",
+    "font": "30px 'Nosifer'",
+    "text-x": "540",
+    "text-y": "300",
+    "text-color": "#001",
     "text-length": "64",
-    "bg-color": "#45235b"
-}, ];
+    "text-align": "center",
+    "bg-color": "#920d16"
+}, {
+    "filename": "04.jpg",
+    "font": "50px 'Playfair Display'",
+    "text-x": "540",
+    "text-y": "720",
+    "text-color": "#fff",
+    "text-length": "64",
+    "text-align": "center",
+    "bg-color": "#353848"
+}, {
+    "filename": "05.jpg",
+    "font": "50px 'Yomogi'",
+    "text-x": "540",
+    "text-y": "330",
+    "text-color": "#001",
+    "text-length": "64",
+    "text-align": "center",
+    "bg-color": "#b37c82"
+}, {
+    "filename": "06.jpg",
+    "font": "33px 'Barrio'",
+    "text-x": "795",
+    "text-y": "260",
+    "text-color": "#fff",
+    "text-length": "64",
+    "text-align": "right",
+    "bg-color": "#78797a"
+}, {
+    "filename": "07.jpg",
+    "font": "90px 'Six Caps'",
+    "text-x": "260",
+    "text-y": "779",
+    "text-color": "#b63ec5",
+    "text-length": "64",
+    "text-align": "left",
+    "bg-color": "#a551ae"
+}, {
+    "filename": "08.jpg",
+    "font": "60px 'Dancing Script'",
+    "text-x": "280",
+    "text-y": "730",
+    "text-color": "#fff",
+    "text-length": "64",
+    "text-align": "left",
+    "bg-color": "#50415a"
+}];
 
 var nr = 0;
 
@@ -35,6 +86,7 @@ function drawTemplate() {
 }
 
 function drawText() {
+    ctx.textAlign="left";
     var stringTitle = document.getElementById('song').value;
     ctx.fillStyle = '#ffffffcf';
     ctx.font = '700 50px Nunito';
@@ -53,18 +105,16 @@ function nextImage() {
         nr = 0;
     }
     document.getElementById("album-img").src = "img/covers/"+coversList[nr]["filename"];
-    document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, "+coversList[nr]["bg-color"]+" 100%)";
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    drawTemplate();
-    drawAlbumLabel();
-    drawText();
+    document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
+    hardRedraw();
 }
 
 function drawAlbumLabel() {
+    ctx.textAlign = coversList[nr]["text-align"];
     var stringTitle = document.getElementById('album').value;
     ctx.fillStyle = coversList[nr]["text-color"];
     ctx.font = coversList[nr]["font"];
-    ctx.fillText(stringTitle, 280, coversList[nr]["text-line"]);
+    ctx.fillText(stringTitle, coversList[nr]["text-x"], coversList[nr]["text-y"]);
     ctx.restore();
 }
 
@@ -104,17 +154,7 @@ function generateImg() {
     drawText();
 }
 
-function pageInit() {
-    document.getElementById("input-form").addEventListener("keyup", () => {
-        ctx.save();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        generateImg();
-    });
-
-    can = document.getElementById("canvas");
-    ctx = can.getContext("2d");
-
+function hardRedraw() {
     generateImg();
     setTimeout(() => {
         generateImg();
@@ -127,6 +167,20 @@ function pageInit() {
     }, 2000);
 }
 
+function pageInit() {
+    document.getElementById("input-form").addEventListener("keyup", () => {
+        ctx.save();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        generateImg();
+    });
+
+    can = document.getElementById("canvas");
+    ctx = can.getContext("2d");
+
+    hardRedraw();
+}
+
 function generateFile(e) {
     drawBackground();
     drawTemplate();
@@ -136,7 +190,7 @@ function generateFile(e) {
     var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
 
     var element = document.createElement('a');
-    var filename = document.getElementById('album').value + '_by_' + document.getElementById('artist').value +'_album_generator.jpg';
+    var filename = "generated_album_cover.jpg";
     element.setAttribute('href', image);
     element.setAttribute('download', filename);
 
