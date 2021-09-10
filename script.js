@@ -1,5 +1,6 @@
 var can;
 var ctx;
+var timeout;
 
 const coversList = [{
     "filename": "01.jpg",
@@ -113,7 +114,7 @@ function drawTemplate() {
 }
 
 function drawText() {
-    ctx.textAlign="left";
+    ctx.textAlign = "left";
     var stringTitle = document.getElementById('song').value;
     ctx.fillStyle = '#ffffffcf';
     ctx.font = '700 50px Nunito';
@@ -131,7 +132,7 @@ function nextImage() {
     } else {
         nr = 0;
     }
-    document.getElementById("album-img").src = "img/covers/"+coversList[nr]["filename"];
+    document.getElementById("album-img").src = "img/covers/" + coversList[nr]["filename"];
     document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
     hardRedraw();
 }
@@ -196,10 +197,18 @@ function hardRedraw() {
 
 function pageInit() {
     document.getElementById("input-form").addEventListener("keyup", () => {
-        ctx.save();
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        if (!timeout) {
+            timeout = setTimeout(function () {
 
-        generateImg();
+                // Reset timeout
+                timeout = null;
+
+                ctx.save();
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                generateImg();
+            }, 50);
+        }
     });
 
     document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
