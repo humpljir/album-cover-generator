@@ -216,7 +216,7 @@ function generateFile(e) {
   drawTemplate();
   drawAlbumLabel();
   drawText();
-  popUp('On mobile phone: Tap and hold the image above and then press “Add to photos”. The picture is now automatically saved in your “Photos” app.');
+  popUp('On mobile phone: Tap and hold the image preview above and then press “Add to photos”. The picture is now automatically saved in your “Photos” app.');
   var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
   var element = document.createElement('a');
   var filename = "generated_album_cover.jpg";
@@ -234,7 +234,7 @@ function popUp(content) {
   document.getElementById('popup-wrapper').classList.add('popup-show');
   setTimeout(function () {
     document.getElementById('popup-wrapper').classList.remove('popup-show');
-  }, 4000);
+  }, 5000);
 }
 
 window.onload = function () {

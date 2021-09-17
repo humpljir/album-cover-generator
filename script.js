@@ -226,7 +226,7 @@ function generateFile(e) {
     drawAlbumLabel();
     drawText();
 
-    popUp('On mobile phone: Tap and hold the image above and then press “Add to photos”. The picture is now automatically saved in your “Photos” app.');
+    popUp('On mobile phone: Tap and hold the image preview above and then press “Add to photos”. The picture is now automatically saved in your “Photos” app.');
 
     var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
 
@@ -248,7 +248,7 @@ function popUp(content) {
     document.getElementById('popup-wrapper').classList.add('popup-show');
     setTimeout(() => {
         document.getElementById('popup-wrapper').classList.remove('popup-show');
-    }, 4000);
+    }, 5000);
 }
 
 window.onload = function () {
