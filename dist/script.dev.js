@@ -194,14 +194,21 @@ function hardRedraw() {
 
 function pageInit() {
   document.getElementById("input-form").addEventListener("keyup", function () {
-    ctx.save();
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    generateImg();
+    if (!timeout) {
+      timeout = setTimeout(function () {
+        // Reset timeout
+        timeout = null;
+        ctx.save();
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        generateImg();
+      }, 50);
+    }
   });
   document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
   can = document.getElementById("canvas");
   ctx = can.getContext("2d");
   hardRedraw();
+  popUp('You can change album picture style simply by touching it!');
 }
 
 function generateFile(e) {
@@ -209,6 +216,7 @@ function generateFile(e) {
   drawTemplate();
   drawAlbumLabel();
   drawText();
+  popUp('On mobile phone: Tap and hold the image above and then press “Add to photos”. The picture is now automatically saved in your “Photos” app.');
   var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
   var element = document.createElement('a');
   var filename = "generated_album_cover.jpg";
@@ -219,6 +227,14 @@ function generateFile(e) {
   drawTemplate();
   drawAlbumLabel();
   drawText();
+}
+
+function popUp(content) {
+  document.getElementById('popup-content').innerHTML = content;
+  document.getElementById('popup-wrapper').classList.add('popup-show');
+  setTimeout(function () {
+    document.getElementById('popup-wrapper').classList.remove('popup-show');
+  }, 4000);
 }
 
 window.onload = function () {

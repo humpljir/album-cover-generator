@@ -216,6 +216,8 @@ function pageInit() {
     ctx = can.getContext("2d");
 
     hardRedraw();
+
+    popUp('You can change album picture style simply by touching it!');
 }
 
 function generateFile(e) {
@@ -223,6 +225,8 @@ function generateFile(e) {
     drawTemplate();
     drawAlbumLabel();
     drawText();
+
+    popUp('On mobile phone: Tap and hold the image above and then press “Add to photos”. The picture is now automatically saved in your “Photos” app.');
 
     var image = can.toDataURL("image/jpg").replace("image/jpg", "image/octet-stream");
 
@@ -237,6 +241,14 @@ function generateFile(e) {
     drawTemplate();
     drawAlbumLabel();
     drawText();
+}
+
+function popUp(content) {
+    document.getElementById('popup-content').innerHTML = content;
+    document.getElementById('popup-wrapper').classList.add('popup-show');
+    setTimeout(() => {
+        document.getElementById('popup-wrapper').classList.remove('popup-show');
+    }, 4000);
 }
 
 window.onload = function () {

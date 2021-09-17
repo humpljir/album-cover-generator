@@ -104,6 +104,26 @@ body {
     }
 }
 
+.popup-wrapper {
+    position: fixed;
+    width: 100%;
+    min-height: 60px;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    box-sizing: border-box;
+    font-size: 10pt;
+    transition: transform 0.4s ease-in-out;
+    transform: translateY(-100%);
+}
+
+.popup-show {
+    transform: translateY(0);
+}
+
 @media screen and (max-width: 600px) {
     .main-wrapper .canvas-wrapper {
         margin: 10px 0;
