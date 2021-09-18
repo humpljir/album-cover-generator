@@ -1,6 +1,7 @@
 var can;
 var ctx;
 var timeout;
+var imgTarget;
 
 const coversList = [{
     "filename": "01.jpg",
@@ -109,7 +110,7 @@ function drawTemplate() {
     var img = document.getElementById("template-img");
     ctx.drawImage(img, 0, 0);
 
-    img = document.getElementById("album-img");
+    img = document.getElementById("imgDOM" + nr);
     ctx.drawImage(img, 240, 200);
 }
 
@@ -132,7 +133,6 @@ function nextImage() {
     } else {
         nr = 0;
     }
-    document.getElementById("album-img").src = "img/covers/" + coversList[nr]["filename"];
     document.querySelector("body").style.background = "linear-gradient(147deg, #151719 0%, " + coversList[nr]["bg-color"] + " 100%)";
     hardRedraw();
 }
@@ -195,7 +195,23 @@ function hardRedraw() {
     }, 2000);
 }
 
+function loadImgs() {
+    var targetDiv = document.getElementById("unvisible-div");
+    var n = 0;
+    coversList.forEach(element => {
+        var imgDOM = document.createElement("img");
+        imgDOM.src = "img/covers/" + element.filename;
+        imgDOM.width = 0;
+        imgDOM.height = 0;
+        imgDOM.id = "imgDOM" + n;
+        n++;
+        targetDiv.append(imgDOM)
+    });
+}
+
 function pageInit() {
+    loadImgs();
+
     document.getElementById("input-form").addEventListener("keyup", () => {
         if (!timeout) {
             timeout = setTimeout(function () {
